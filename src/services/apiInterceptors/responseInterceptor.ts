@@ -6,4 +6,5 @@ export function onResFullfilled(res: AxiosResponse<any, any>) {
 
 export function onResRejected(error: unknown | null) {
   console.log('response error:', error)
+  return error
 }
