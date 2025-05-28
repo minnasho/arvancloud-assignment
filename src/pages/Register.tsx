@@ -9,7 +9,7 @@ export function Register() {
       title={'Sign up'}
       alterWayHint={'Have an account?'}
       alterWayText={'Sign in'}
-      alterWayLink={'#'}
+      alterWayLink={'/login'}
       onFormSubmit={handleSubmit(onSubmit)}
     >
       <div className="mb-4">

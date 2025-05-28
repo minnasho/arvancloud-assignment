@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 interface IAuthLayoutProps {
   children: React.ReactNode
   title: 'Sign in' | 'Sign up'
@@ -32,9 +34,9 @@ export function AuthLayout({
         </button>
         <p className="mt-4 text-center text-sm">
           {alterWayHint}{' '}
-          <a href={alterWayLink} className="text-blue-600 hover:underline">
+          <Link to={alterWayLink} className="text-blue-600 hover:underline">
             {alterWayText}
-          </a>
+          </Link>
         </p>
       </form>
     </div>
