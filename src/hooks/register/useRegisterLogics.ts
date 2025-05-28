@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { schema, type FormData } from '../../utils/constants/registerConsts'
+import { useRegisterRequest } from './useRegisterRequest'
 
 export function useRegisterLogics() {
   const {
@@ -10,10 +11,11 @@ export function useRegisterLogics() {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
+  const { sendRegisterRequest } = useRegisterRequest()
 
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-    // your sign-in logic here
+  const onSubmit = async (data: FormData) => {
+    const { username, email, password } = data
+    await sendRegisterRequest.mutateAsync({ username, email, password })
   }
 
   return {
