@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { register } from '../../services/api/auth/register'
 import { useNavigate } from 'react-router'
+import { showToast } from '../../utils/showToast'
 
 interface IRegisterRequest {
   email: string
@@ -15,7 +16,16 @@ export function useRegisterRequest() {
     onSuccess: () => {
       navigate('/login', { replace: true })
     },
-    onError: () => {},
+    onError: (error: string[]) => {
+      console.log('mutation error:', error)
+      for (let i = 0; i < error.length; i++) {
+        showToast({
+          title: 'Sign-up Failed!',
+          message: error[i],
+          type: 'error',
+        })
+      }
+    },
   })
   return { sendRegisterRequest }
 }

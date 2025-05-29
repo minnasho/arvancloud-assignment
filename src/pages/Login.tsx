@@ -1,9 +1,16 @@
 import { AuthLayout } from '../layouts/AuthLayout'
-import { useLoginLogics } from '../hooks'
 import { Input } from '../components'
+import { useLoginRequest } from '../hooks/login/useLoginRequest'
+import { useAuthLogic } from '../hooks/useAuthLogic'
+import { loginSchema, type LoginFormData } from '../utils/authSchemas'
 
 export function Login() {
-  const { handleSubmit, onSubmit, register, errors } = useLoginLogics()
+  const { sendLoginRequest } = useLoginRequest()
+  const { handleSubmit, onSubmit, register, errors } =
+    useAuthLogic<LoginFormData>({
+      schema: loginSchema,
+      mutationFn: sendLoginRequest.mutateAsync,
+    })
   return (
     <AuthLayout
       title={'Sign in'}

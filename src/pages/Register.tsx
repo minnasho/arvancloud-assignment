@@ -1,9 +1,16 @@
 import { Input } from '../components'
-import { useRegisterLogics } from '../hooks'
+import { useRegisterRequest } from '../hooks/register/useRegisterRequest'
+import { useAuthLogic } from '../hooks/useAuthLogic'
 import { AuthLayout } from '../layouts/AuthLayout'
+import { registerSchema, type RegisterFormData } from '../utils/authSchemas'
 
 export function Register() {
-  const { handleSubmit, onSubmit, register, errors } = useRegisterLogics()
+  const { sendRegisterRequest } = useRegisterRequest()
+  const { handleSubmit, onSubmit, register, errors } =
+    useAuthLogic<RegisterFormData>({
+      schema: registerSchema,
+      mutationFn: sendRegisterRequest.mutateAsync,
+    })
   return (
     <AuthLayout
       title={'Sign up'}
