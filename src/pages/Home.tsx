@@ -1,3 +1,6 @@
+import { useAppSelector } from "../app/store/hooks"
+
 export function Home() {
-  return <div>Home</div>
+  const { username } = useAppSelector((state) => state.authData)
+  return <div>{username}</div>
 }
