@@ -10,4 +10,5 @@ export function onReqFullfilled(request: InternalAxiosRequestConfig<any>) {
 //(error: (error: any) => any) | null, options?: AxiosInterceptorOptions) => number
 export function onReqRejected(error: unknown | null) {
   console.log('request error:', error)
+  return Promise.reject(error)
 }

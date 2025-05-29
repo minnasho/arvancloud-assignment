@@ -6,11 +6,11 @@ export interface IRequest {
     options?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<T>>
 
-  post: (
+  post: <T, U>(
     endpoint: string,
-    data: unknown,
+    data: U,
     options?: AxiosRequestConfig,
-  ) => Promise<AxiosResponse>
+  ) => Promise<AxiosResponse<T>>
 
   put: (
     endpoint: string,
