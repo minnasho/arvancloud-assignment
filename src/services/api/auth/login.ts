@@ -6,7 +6,17 @@ interface ILoginPayload {
     password: string
   }
 }
+interface ILoginResponse {
+  user: {
+    id: number
+    email: string
+    username: string
+    bio?: string
+    image: string
+    token: string
+  }
+}
 
 export function login({ user }: ILoginPayload) {
-  return request.post('/users/login', { user })
+  return request.post<ILoginResponse, ILoginPayload>('/users/login', { user })
 }

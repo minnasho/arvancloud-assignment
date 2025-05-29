@@ -2,6 +2,8 @@ import { useMutation } from '@tanstack/react-query'
 import { login } from '../../services/api/auth/login'
 import { useNavigate } from 'react-router'
 import { showToast } from '../../utils/showToast'
+import { useAppDispatch } from '../../app/store/hooks'
+import { setAuthData } from '../../redux/authDataSlice'
 
 interface ILoginRequest {
   email: string
@@ -9,11 +11,15 @@ interface ILoginRequest {
 }
 export function useLoginRequest() {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
   const sendLoginRequest = useMutation({
     mutationFn: ({ email, password }: ILoginRequest) =>
       login({ user: { email, password } }),
-    onSuccess: (data) => {
-      console.log('mutation data:', data)
+    onSuccess: (response) => {
+      console.log('mutation data:', response)
+      const userData = response.data.user
+      dispatch(setAuthData({ ...userData }))
       void navigate('/articles', { replace: true })
     },
     onError: (error: string[]) => {

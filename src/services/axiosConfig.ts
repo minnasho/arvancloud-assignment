@@ -23,8 +23,8 @@ api.interceptors.response.use(onResFullfilled, onResRejected)
 export const request: IRequest = {
   get: <T>(endpoint: string, options = {}) => api.get<T>(endpoint, options),
 
-  post: (endpoint, data, options = {}) =>
-    api.post(endpoint, Object.assign({}, data), options),
+  post: <T, U>(endpoint: string, data: U, options = {}) =>
+    api.post<T>(endpoint, Object.assign({}, data), options),
 
   put: (endpoint, data, options) =>
     api.put(endpoint, Object.assign({}, data), options),
