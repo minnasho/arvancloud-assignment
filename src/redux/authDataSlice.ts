@@ -23,6 +23,7 @@ const authDataSlice = createSlice({
   initialState: authDataState,
   reducers: {
     setAuthData: (state, action: PayloadAction<IAuthDataState>) => {
+      localStorage.setItem('userData', JSON.stringify(action.payload))
       const { id, email, username, bio, image, token } = action.payload
       state.id = id
       state.email = email

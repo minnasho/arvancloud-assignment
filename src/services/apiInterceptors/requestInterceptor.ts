@@ -1,9 +1,8 @@
 import type { InternalAxiosRequestConfig } from 'axios'
 
-export function onReqFullfilled(request: InternalAxiosRequestConfig<any>) {
-  if (request.headers) {
-    request.headers['Authorization'] = `Token ${'token'}`
-  }
+export function requestHandler(request: InternalAxiosRequestConfig<any>) {
+  const { token } = JSON.parse(localStorage.getItem('userData') ?? '{}')
+  if (request.headers) request.headers['Authorization'] = `Token ${token}`
   return request
 }
 

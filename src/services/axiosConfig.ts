@@ -1,10 +1,9 @@
 import axios from 'axios'
 import type { IRequest } from './types'
 import {
-  onReqFullfilled,
-  onReqRejected,
   onResFullfilled,
   onResRejected,
+  requestHandler,
 } from './apiInterceptors'
 
 const baseURL = import.meta.env.VITE_REACT_APP_API_BASE_URL
@@ -17,7 +16,7 @@ const api = axios.create({
     'X-Requested-With': 'XMLHttpRequest',
   },
 })
-api.interceptors.request.use(onReqFullfilled, onReqRejected)
+api.interceptors.request.use((request) => requestHandler(request))
 api.interceptors.response.use(onResFullfilled, onResRejected)
 
 export const request: IRequest = {
