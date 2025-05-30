@@ -14,6 +14,8 @@ export function NewArticle() {
     handleNewTagKeyDown,
     newTagInput,
     setNewTagInput,
+    article,
+    editMode,
   } = useNewArticleLogic()
 
   return (
@@ -25,6 +27,8 @@ export function NewArticle() {
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
           selectedTags={selectedTags}
+          article={article}
+          editMode={editMode}
         />
         <TagList
           allTags={allTags}

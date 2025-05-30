@@ -1,3 +1,5 @@
 export * from './createNewArticle'
 export * from './getAllArticles'
 export * from './getAllTags'
+export * from './getSingleArticle'
+export * from './updateArticle'

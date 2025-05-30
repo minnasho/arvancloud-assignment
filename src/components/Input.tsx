@@ -12,6 +12,7 @@ interface IInputProps {
     | 'description'
     | 'tags'
   placeholder?: string
+  value?: string | null
 }
 
 export function Input({
@@ -21,6 +22,7 @@ export function Input({
   type,
   inputName,
   placeholder = 'sample text',
+  value,
 }: IInputProps) {
   return (
     <>
@@ -34,6 +36,7 @@ export function Input({
             : 'border-gray-300 focus:ring-teal-200'
         }`}
         placeholder={placeholder}
+        value={value}
       />
       {errors[inputName] && (
         <p className="mt-1 text-sm text-red-600">{errors[inputName].message}</p>
