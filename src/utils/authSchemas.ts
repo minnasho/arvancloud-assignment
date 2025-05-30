@@ -20,5 +20,6 @@ export const newArticleSchema = z.object({
   title: z.string().nonempty('Required field'),
   description: z.string().nonempty('Required field'),
   body: z.string().nonempty('Required field'),
+  tagList: z.array(z.string()).optional(),
 })
 export type NewArticleFormData = z.infer<typeof newArticleSchema>
