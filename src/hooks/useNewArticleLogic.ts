@@ -58,10 +58,6 @@ export function useNewArticleLogic() {
     }
   }
 
-  const submitArticle = (data: NewArticleFormData) => {
-    onSubmit({ ...data, tagList: Array.from(selectedTags) })
-  }
-
   useEffect(() => {
     if (slug && singleArticle?.data) {
       reset({

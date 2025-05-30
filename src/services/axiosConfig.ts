@@ -27,4 +27,6 @@ export const request: IRequest = {
 
   put: <T, U>(endpoint: string, data: U, options = {}) =>
     api.put<T>(endpoint, Object.assign({}, data), options),
+
+  delete: (endpoint, options) => api.delete(endpoint, options),
 }
