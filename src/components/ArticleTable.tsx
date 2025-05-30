@@ -15,6 +15,7 @@ export function ArticleTable({ articles }: IArticleProps) {
   const currentPosts = articles.slice(startIndex, startIndex + ITEMS_PER_PAGE)
 
   const changePage = (page: number) => {
+    console.log('page:', page)
     if (page >= 1 && page <= totalPages) setCurrentPage(page)
   }
 
