@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useCreateNewArticle } from './useCreateNewArticle'
-import { newArticleSchema, type NewArticleFormData } from '../utils/authSchemas'
-import { useAuthLogic } from './useAuthLogic'
+import {
+  useCreateNewArticleRequest,
+  useUpdateArticleRequest,
+} from '../services/serciveCalls'
+import { newArticleSchema, type NewArticleFormData } from '../utils/formSchemas'
+import { useFormLogic } from './useFormLogic'
 import { useQuery } from '@tanstack/react-query'
 import { getAllTags, getSingleArticle } from '../services/api'
 import { useParams } from 'react-router'
@@ -17,9 +20,10 @@ export function useNewArticleLogic() {
     queryFn: () => getSingleArticle({ slug: slug ?? '' }),
     enabled: !!slug,
   })
-  const { submitNewArticle, submitUpdatedArticle } = useCreateNewArticle()
+  const { submitNewArticle } = useCreateNewArticleRequest()
+  const { submitUpdatedArticle } = useUpdateArticleRequest()
   const { handleSubmit, onSubmit, register, errors, reset } =
-    useAuthLogic<NewArticleFormData>({
+    useFormLogic<NewArticleFormData>({
       schema: newArticleSchema,
       mutationFn: slug
         ? (data: NewArticleFormData) =>

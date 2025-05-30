@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { authDataReducer } from '../../redux/authDataSlice'
+import { authDataReducer } from './slices/authDataSlice'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // uses localStorage by default
 

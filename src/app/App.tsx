@@ -1,11 +1,11 @@
 import { BrowserRouter } from 'react-router'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from './config/queryClient'
+import { queryClient } from './queryClient'
 import { AppRouter } from './router'
 import { useSubscribeToShowToast } from '../hooks/useSubscribeToShowToast'
 import { Toast } from '../components/Toast'
 import { Provider } from 'react-redux'
-import { store } from './store'
+import { store } from './redux/store'
 
 function App() {
   const { messages } = useSubscribeToShowToast()

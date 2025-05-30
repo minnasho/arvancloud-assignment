@@ -1,5 +1,5 @@
 import type { IArticle } from '../services/types'
-import type { NewArticleFormData } from '../utils/authSchemas'
+import type { NewArticleFormData } from '../utils/formSchemas'
 import { Input } from './Input'
 
 interface IArticleFormProps {

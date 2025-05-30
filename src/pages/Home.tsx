@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useAppSelector } from '../app/store/hooks'
+import { useAppSelector } from '../app/redux/hooks'
 import { getAllArticles } from '../services/api/main/getAllArticles'
 import MainLayout from '../layouts/MainLayout'
 import { ArticleTable } from '../components'

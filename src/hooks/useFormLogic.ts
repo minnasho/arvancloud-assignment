@@ -9,7 +9,7 @@ interface IAuthLogicParams<T> {
   formDefaultValue?: DefaultValues<T>
 }
 
-export function useAuthLogic<T extends Record<string, any>>({
+export function useFormLogic<T extends Record<string, any>>({
   schema,
   mutationFn,
   formDefaultValue,

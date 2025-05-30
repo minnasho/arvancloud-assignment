@@ -2,8 +2,8 @@ import { useMutation } from '@tanstack/react-query'
 import { login } from '../../services/api/auth/login'
 import { useNavigate } from 'react-router'
 import { showToast } from '../../utils/showToast'
-import { useAppDispatch } from '../../app/store/hooks'
-import { setAuthData } from '../../redux/authDataSlice'
+import { useAppDispatch } from '../../app/redux/hooks'
+import { setAuthData } from '../../app/redux/slices/authDataSlice'
 
 interface ILoginRequest {
   email: string
