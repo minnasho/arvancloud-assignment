@@ -11,7 +11,7 @@ export function AppRouter() {
         <Route path="/articles" element={<Home />} />
         <Route path="/articles/page/:page" element={<Home />} />
         <Route path="/articles/create" element={<NewArticle />} />
-        <Route path="/articles/edit/:slug" element={<Home />} />
+        <Route path="/articles/edit/:slug" element={<NewArticle />} />
       </Route>
     </Routes>
   )

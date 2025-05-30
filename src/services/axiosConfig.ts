@@ -25,6 +25,6 @@ export const request: IRequest = {
   post: <T, U>(endpoint: string, data: U, options = {}) =>
     api.post<T>(endpoint, Object.assign({}, data), options),
 
-  put: (endpoint, data, options) =>
-    api.put(endpoint, Object.assign({}, data), options),
+  put: <T, U>(endpoint: string, data: U, options = {}) =>
+    api.put<T>(endpoint, Object.assign({}, data), options),
 }

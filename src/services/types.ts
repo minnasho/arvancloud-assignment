@@ -12,11 +12,11 @@ export interface IRequest {
     options?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<T>>
 
-  put: (
+  put: <T, U>(
     endpoint: string,
-    data: unknown,
+    data: U,
     options?: AxiosRequestConfig,
-  ) => Promise<AxiosResponse>
+  ) => Promise<AxiosResponse<T>>
 }
 
 export interface ILoginPayload {
@@ -67,6 +67,9 @@ export interface INewArticleData {
 export interface INewArticlePayload {
   article: INewArticleData
 }
+export interface IUpdateArticlePayload {
+  article: Partial<INewArticleData>
+}
 
 export interface INewArticleResponse {
   article: IArticle[]
@@ -74,4 +77,8 @@ export interface INewArticleResponse {
 
 export interface ITagsResponse {
   tags: string[]
+}
+
+export interface ISingleArticle {
+  article: IArticle
 }

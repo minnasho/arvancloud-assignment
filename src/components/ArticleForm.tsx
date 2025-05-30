@@ -1,3 +1,4 @@
+import type { IArticle } from '../services/types'
 import type { NewArticleFormData } from '../utils/authSchemas'
 import { Input } from './Input'
 
@@ -7,6 +8,8 @@ interface IArticleFormProps {
   handleSubmit: any
   onSubmit: any
   selectedTags: Set<string>
+  editMode?: boolean
+  article?: IArticle
 }
 
 export function ArticleForm({
@@ -15,7 +18,9 @@ export function ArticleForm({
   handleSubmit,
   onSubmit,
   selectedTags,
+  article,
 }: IArticleFormProps) {
+  console.log('article:', article)
   return (
     <div id="articleForm" className="flex-1 rounded-lg bg-white">
       <div id="header" className="border-b border-[#E6E6E6] p-4">
