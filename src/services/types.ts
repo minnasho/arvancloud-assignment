@@ -17,6 +17,11 @@ export interface IRequest {
     data: U,
     options?: AxiosRequestConfig,
   ) => Promise<AxiosResponse<T>>
+
+  delete: (
+    endpoint: string,
+    options?: AxiosRequestConfig,
+  ) => Promise<AxiosResponse>
 }
 
 export interface ILoginPayload {

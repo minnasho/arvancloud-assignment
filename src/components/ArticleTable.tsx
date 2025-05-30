@@ -2,6 +2,10 @@ import { useState } from 'react'
 import type { IArticle } from '../services/types'
 import { FloatingMenu } from './FloatingMenu'
 import { useNavigate } from 'react-router'
+import { useMutation } from '@tanstack/react-query'
+import { deleteArticle } from '../services/api'
+import { showToast } from '../utils/showToast'
+import { Modal } from './Modal'
 
 interface IArticleProps {
   articles: IArticle[]
@@ -12,6 +16,8 @@ const ITEMS_PER_PAGE = 10
 export function ArticleTable({ articles }: IArticleProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const [openMenuSlug, setOpenMenuSlug] = useState<string | null>(null)
+  const [showModal, setShowModal] = useState(false)
+  const [deleteSlug, setDeleteSlug] = useState<string>('')
   const navigate = useNavigate()
   const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE)
 
@@ -21,6 +27,23 @@ export function ArticleTable({ articles }: IArticleProps) {
   const changePage = (page: number) => {
     console.log('page:', page)
     if (page >= 1 && page <= totalPages) setCurrentPage(page)
+  }
+
+  const deleteArticleRequest = useMutation({
+    mutationFn: ({ slug }: { slug: string }) => deleteArticle({ slug }),
+    onSuccess: () => {
+      showToast({
+        title: '',
+        message: 'Article deleted successfuly',
+        type: 'success',
+      })
+    },
+  })
+
+  const handleDelete = (slug: string) => {
+    deleteArticleRequest.mutate({ slug })
+    setShowModal(false)
+    setOpenMenuSlug(null)
   }
 
   return (
@@ -64,12 +87,18 @@ export function ArticleTable({ articles }: IArticleProps) {
                   <FloatingMenu
                     isMenuOpen={openMenuSlug === post.slug}
                     mneuItems={[
-                      { title: 'Delete', onClick: () => {} },
                       {
                         title: 'Edit',
                         onClick: () => {
                           navigate(`/articles/edit/${post.slug}`)
                           setOpenMenuSlug(null)
+                        },
+                      },
+                      {
+                        title: 'Delete',
+                        onClick: () => {
+                          setShowModal(true)
+                          setDeleteSlug(() => post.slug)
                         },
                       },
                     ]}
@@ -113,6 +142,14 @@ export function ArticleTable({ articles }: IArticleProps) {
           ›
         </button>
       </div>
+      <Modal
+        isOpen={showModal}
+        onConfirm={() => handleDelete(deleteSlug)}
+        onCancel={() => {
+          setShowModal(false)
+          setOpenMenuSlug(null)
+        }}
+      />
     </div>
   )
 }
