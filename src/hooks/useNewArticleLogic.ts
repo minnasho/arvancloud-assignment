@@ -1,20 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCreateNewArticle } from './useCreateNewArticle'
 import { newArticleSchema, type NewArticleFormData } from '../utils/authSchemas'
 import { useAuthLogic } from './useAuthLogic'
 import { useQuery } from '@tanstack/react-query'
-import { getAllTags } from '../services/api'
+import { getAllTags, getSingleArticle } from '../services/api'
+import { useParams } from 'react-router'
 
 export function useNewArticleLogic() {
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
   const [customTags, setCustomTags] = useState<string[]>([])
   const [newTagInput, setNewTagInput] = useState('')
+  const { slug } = useParams()
 
-  const { submitNewArticle } = useCreateNewArticle()
-  const { handleSubmit, onSubmit, register, errors } =
+  const { data: singleArticle } = useQuery({
+    queryKey: ['singleArticle', slug],
+    queryFn: () => getSingleArticle({ slug: slug ?? '' }),
+    enabled: !!slug,
+  })
+  const { submitNewArticle, submitUpdatedArticle } = useCreateNewArticle()
+  const { handleSubmit, onSubmit, register, errors, reset } =
     useAuthLogic<NewArticleFormData>({
       schema: newArticleSchema,
-      mutationFn: submitNewArticle.mutateAsync,
+      mutationFn: slug
+        ? (data: NewArticleFormData) =>
+            submitUpdatedArticle.mutateAsync({ slug, data })
+        : submitNewArticle.mutateAsync,
     })
   const { data: response } = useQuery({
     queryKey: ['tagList'],
@@ -48,6 +58,20 @@ export function useNewArticleLogic() {
     }
   }
 
+  const submitArticle = (data: NewArticleFormData) => {
+    onSubmit({ ...data, tagList: Array.from(selectedTags) })
+  }
+
+  useEffect(() => {
+    if (slug && singleArticle?.data) {
+      reset({
+        title: singleArticle.data.article.title,
+        description: singleArticle.data.article.description,
+        body: singleArticle.data.article.body,
+      })
+    }
+  }, [slug, singleArticle])
+
   return {
     selectedTags,
     handleSubmit,
@@ -59,5 +83,7 @@ export function useNewArticleLogic() {
     handleNewTagKeyDown,
     newTagInput,
     setNewTagInput,
+    article: singleArticle?.data.article,
+    editMode: !!slug,
   }
 }
