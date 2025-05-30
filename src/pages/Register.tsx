@@ -1,13 +1,13 @@
 import { Input } from '../components'
-import { useRegisterRequest } from '../hooks/register/useRegisterRequest'
-import { useAuthLogic } from '../hooks/useAuthLogic'
+import { useRegisterRequest } from '../services/serciveCalls'
+import { useFormLogic } from '../hooks'
 import { AuthLayout } from '../layouts/AuthLayout'
-import { registerSchema, type RegisterFormData } from '../utils/authSchemas'
+import { registerSchema, type RegisterFormData } from '../utils/formSchemas'
 
 export function Register() {
   const { sendRegisterRequest } = useRegisterRequest()
   const { handleSubmit, onSubmit, register, errors } =
-    useAuthLogic<RegisterFormData>({
+    useFormLogic<RegisterFormData>({
       schema: registerSchema,
       mutationFn: sendRegisterRequest.mutateAsync,
     })
