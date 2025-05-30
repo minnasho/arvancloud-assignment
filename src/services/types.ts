@@ -57,3 +57,21 @@ export interface IGetAllArticlesResponse {
   articles: IArticle[]
   articlesCount: number
 }
+
+export interface INewArticleData {
+  title: string
+  description: string
+  body: string
+  tagList?: string[]
+}
+export interface INewArticlePayload {
+  article: INewArticleData
+}
+
+export interface INewArticleResponse {
+  article: IArticle[]
+}
+
+export interface ITagsResponse {
+  tags: string[]
+}

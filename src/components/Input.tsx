@@ -1,9 +1,16 @@
 interface IInputProps {
-  register: any
-  errors: any
+  register?: any
+  errors?: any
   label: string
   type: 'email' | 'password' | 'text'
-  inputName: 'email' | 'password' | 'username'
+  inputName:
+    | 'email'
+    | 'password'
+    | 'username'
+    | 'title'
+    | 'body'
+    | 'description'
+    | 'tags'
   placeholder?: string
 }
 

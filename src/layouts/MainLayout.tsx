@@ -10,7 +10,7 @@ export default function MainLayout({
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
-    <div className="flex w-full h-screen flex-col bg-[#F0F0F0]">
+    <div className="flex h-screen w-full flex-col bg-[#F0F0F0]">
       <Navbar
         userName={userName}
         menuOpen={menuOpen}
