@@ -1,6 +1,8 @@
 import type { IArticle } from '../services/types'
 import type { NewArticleFormData } from '../utils/formSchemas'
+import { Button } from './Button'
 import { Input } from './Input'
+import { Textarea } from './Textarea'
 
 interface IArticleFormProps {
   register: any
@@ -10,6 +12,7 @@ interface IArticleFormProps {
   selectedTags: Set<string>
   editMode?: boolean
   article?: IArticle
+  isLoading?: boolean
 }
 
 export function ArticleForm({
@@ -18,50 +21,48 @@ export function ArticleForm({
   handleSubmit,
   onSubmit,
   selectedTags,
-  article,
+  isLoading = false,
 }: IArticleFormProps) {
-  console.log('article:', article)
   return (
-    <div id="articleForm" className="flex-1 rounded-lg bg-white">
-      <div id="header" className="border-b border-[#E6E6E6] p-4">
+    <div
+      id="articleForm"
+      className="bg-neutral-bg1-default flex-2/3 rounded-lg"
+    >
+      <div id="header" className="flex h-[100px] min-h-24 items-center p-6">
         <h2 className="text-lg font-semibold">New Article</h2>
       </div>
-      <div id="form" className="p-4">
-        <div className="mb-4">
-          <Input
-            register={register}
-            errors={errors}
-            label="Title"
-            type="text"
-            inputName="title"
+      <div id="form" className="border-neutral-st3-default border-t p-6">
+        <Input
+          register={register}
+          errors={errors}
+          label="Title"
+          type="text"
+          inputName="title"
+        />
+        <Input
+          register={register}
+          errors={errors}
+          label="Description"
+          type="text"
+          inputName="description"
+        />
+        <Textarea
+          register={register}
+          errors={errors}
+          label="Body"
+          inputName="body"
+        />
+        <div className="w-20">
+          <Button
+            onClick={handleSubmit((data: NewArticleFormData) =>
+              onSubmit({ ...data, tagList: Array.from(selectedTags) }),
+            )}
+            title={'Submit'}
+            btnType={'primary'}
+            role={'submit'}
+            isLoading={isLoading}
           />
         </div>
-        <div className="mb-4">
-          <Input
-            register={register}
-            errors={errors}
-            label="Description"
-            type="text"
-            inputName="description"
-          />
-        </div>
-        <div className="mb-4">
-          <Input
-            register={register}
-            errors={errors}
-            label="Body"
-            type="text"
-            inputName="body"
-          />
-        </div>
-        <button
-          onClick={handleSubmit((data: NewArticleFormData) =>
-            onSubmit({ ...data, tagList: Array.from(selectedTags) }),
-          )}
-          className="w-full rounded-md bg-teal-600 py-2 font-semibold text-white transition hover:bg-teal-700"
-        >
-          Submit
-        </button>
       </div>
     </div>
   )

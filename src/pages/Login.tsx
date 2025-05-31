@@ -20,24 +20,20 @@ export function Login() {
       onFormSubmit={handleSubmit(onSubmit)}
       isLoading={isLoading}
     >
-      <div className="mb-4">
-        <Input
-          register={register}
-          errors={errors}
-          label="Email"
-          type="email"
-          inputName="email"
-        />
-      </div>
-      <div className="mb-6">
-        <Input
-          register={register}
-          errors={errors}
-          label="Password"
-          type="password"
-          inputName="password"
-        />
-      </div>
+      <Input
+        register={register}
+        errors={errors}
+        label="Email"
+        type="email"
+        inputName="email"
+      />
+      <Input
+        register={register}
+        errors={errors}
+        label="Password"
+        type="password"
+        inputName="password"
+      />
     </AuthLayout>
   )
 }

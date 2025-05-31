@@ -34,16 +34,8 @@ export function AuthLayout({
           <div id="content">{children}</div>
           <Button
             role="submit"
-            title={
-              isLoading ? (
-                <LoadingSpinner
-                  size={20}
-                  color="border-neutral-fg3-default/40"
-                />
-              ) : (
-                title
-              )
-            }
+            title={title}
+            isLoading={isLoading}
             btnType="primary"
           />
           <p className="mt-4 text-center">

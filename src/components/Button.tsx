@@ -1,8 +1,11 @@
+import { LoadingSpinner } from './LoadingSpinner'
+
 interface IButtonProps {
   title: string | React.ReactNode
   role?: 'button' | 'submit' | 'reset'
   btnType: 'primary' | 'secondary' | 'danger'
   className?: string
+  isLoading?: boolean
   onClick?: () => void
 }
 export function Button({
@@ -10,6 +13,7 @@ export function Button({
   title,
   btnType,
   className,
+  isLoading = false,
   onClick,
 }: IButtonProps) {
   const baseClasses =
@@ -28,7 +32,11 @@ export function Button({
       type={role}
       className={`${baseClasses} ${typeClasses[btnType]} ${className}`}
     >
-      {title}
+      {isLoading ? (
+        <LoadingSpinner size={20} color="border-neutral-fg3-default/40" />
+      ) : (
+        title
+      )}
     </button>
   )
 }

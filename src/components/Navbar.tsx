@@ -11,7 +11,7 @@ export function Navbar({ userName, menuOpen, setMenuOpen }: INavbarProps) {
   const logout = useLogout()
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-[#E6E6E6] bg-white px-4 py-3">
+    <header className="border-neutral-st3-default bg-neutral-bg1-default fixed top-0 right-0 left-0 flex h-16 items-center justify-between border-b px-4 py-3">
       <span className="hidden md:inline">
         Welcome <strong>&lt;{userName}&gt;</strong>
       </span>
