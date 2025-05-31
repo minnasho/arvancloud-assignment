@@ -5,7 +5,7 @@ import { useFormLogic } from '../hooks'
 import { loginSchema, type LoginFormData } from '../utils/formSchemas'
 
 export function Login() {
-  const { sendLoginRequest } = useLoginRequest()
+  const { sendLoginRequest, isLoading } = useLoginRequest()
   const { handleSubmit, onSubmit, register, errors } =
     useFormLogic<LoginFormData>({
       schema: loginSchema,
@@ -18,6 +18,7 @@ export function Login() {
       alterWayText={'Sign up now'}
       alterWayLink={'/register'}
       onFormSubmit={handleSubmit(onSubmit)}
+      isLoading={isLoading}
     >
       <div className="mb-4">
         <Input

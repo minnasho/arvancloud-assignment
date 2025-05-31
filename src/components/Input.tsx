@@ -26,20 +26,20 @@ export function Input({
 }: IInputProps) {
   return (
     <>
-      <label className="mb-1 block text-sm font-medium">{label}</label>
+      <label className="mb-1 block">{label}</label>
       <input
         type={type}
         {...register(`${inputName}`)}
-        className={`w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none ${
-          errors[inputName]
-            ? 'border-red-500 ring-red-200'
-            : 'border-gray-300 focus:ring-teal-200'
+        className={`bg-neutral-bg1-default border-neutral-st2-default h-10 w-full rounded-lg border px-3 py-2 focus:ring focus:outline-none ${
+          errors[inputName] ? 'ring-error-fg1-default' : 'ring-primary-fg1'
         }`}
         placeholder={placeholder}
         value={value}
       />
       {errors[inputName] && (
-        <p className="mt-1 text-sm text-red-600">{errors[inputName].message}</p>
+        <p className="text-error-fg1-default mt-1 text-xs">
+          {errors[inputName].message}
+        </p>
       )}
     </>
   )

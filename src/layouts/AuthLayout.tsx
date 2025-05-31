@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { Button, LoadingSpinner } from '../components'
 
 interface IAuthLayoutProps {
   children: React.ReactNode
@@ -6,6 +7,7 @@ interface IAuthLayoutProps {
   alterWayHint: string
   alterWayText: string
   alterWayLink: string
+  isLoading: boolean
   onFormSubmit: () => void
 }
 
@@ -15,6 +17,7 @@ export function AuthLayout({
   alterWayHint,
   alterWayText,
   alterWayLink,
+  isLoading,
   onFormSubmit,
 }: IAuthLayoutProps) {
   return (
@@ -22,22 +25,37 @@ export function AuthLayout({
       <form
         onSubmit={onFormSubmit}
         id="formBox"
-        className="mx-auto w-full max-w-sm p-8 md:max-w-md md:rounded-lg md:bg-white md:shadow-md"
+        className="md:bg-neutral-bg1-default mx-auto w-full max-w-sm md:max-w-md md:rounded-lg md:shadow-md"
       >
-        <h2 className="mb-6 text-2xl font-bold">{title}</h2>
-        <div id="content">{children}</div>
-        <button
-          type="submit"
-          className="w-full rounded-md bg-teal-600 py-2 font-semibold text-white transition hover:bg-teal-700"
-        >
+        <h2 className="flex h-[100px] min-h-[92px] items-center p-6 text-xl font-semibold">
           {title}
-        </button>
-        <p className="mt-4 text-center text-sm">
-          {alterWayHint}{' '}
-          <Link to={alterWayLink} className="text-blue-600 hover:underline">
-            {alterWayText}
-          </Link>
-        </p>
+        </h2>
+        <div className="md:border-t-neutral-st3-default p-6 md:border-t">
+          <div id="content">{children}</div>
+          <Button
+            role="submit"
+            title={
+              isLoading ? (
+                <LoadingSpinner
+                  size={20}
+                  color="border-neutral-fg3-default/40"
+                />
+              ) : (
+                title
+              )
+            }
+            btnType="primary"
+          />
+          <p className="mt-4 text-center">
+            {alterWayHint}{' '}
+            <Link
+              to={alterWayLink}
+              className="text-pt-info-t2-fg1-default font-semibold hover:underline"
+            >
+              {alterWayText}
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   )
