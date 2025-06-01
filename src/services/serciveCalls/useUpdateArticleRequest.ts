@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { showToast } from '../../utils/showToast'
 import { updateArticle, type IUpdateArticle } from '../api'
 import { useNavigate } from 'react-router'
+import { queryClient } from '../../app/queryClient'
 
 export function useUpdateArticleRequest() {
   const navigate = useNavigate()
@@ -11,6 +12,7 @@ export function useUpdateArticleRequest() {
       updateArticle({ slug, data }),
     onSuccess: () => {
       void navigate('/articles', { replace: true })
+      queryClient.invalidateQueries({ queryKey: ['articles'] })
       showToast({
         title: 'Well done!',
         message: 'Article updated successfuly',
