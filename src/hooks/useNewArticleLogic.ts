@@ -6,7 +6,7 @@ import {
 import { newArticleSchema, type NewArticleFormData } from '../utils/formSchemas'
 import { useFormLogic } from './useFormLogic'
 import { useQuery } from '@tanstack/react-query'
-import { getAllTags, getSingleArticle } from '../services/api'
+import { getAllTags, getSingleArticle, updateArticle } from '../services/api'
 import { useParams } from 'react-router'
 
 export function useNewArticleLogic() {
@@ -85,5 +85,7 @@ export function useNewArticleLogic() {
     setNewTagInput,
     article: singleArticle?.data.article,
     editMode: !!slug,
+    isNewArticleLoading: submitNewArticle.isPending,
+    isUpdateArticleLoading: submitUpdatedArticle.isPending,
   }
 }

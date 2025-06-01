@@ -32,8 +32,17 @@ const authDataSlice = createSlice({
       state.image = image
       state.token = token
     },
+    clearAuthData: (state) => {
+      localStorage.removeItem('userData')
+      state.id = 0
+      state.email = ''
+      state.username = ''
+      state.bio = ''
+      state.image = ''
+      state.token = ''
+    },
   },
 })
 
-export const { setAuthData } = authDataSlice.actions
+export const { setAuthData, clearAuthData } = authDataSlice.actions
 export const authDataReducer = authDataSlice.reducer //default export it

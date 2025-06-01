@@ -1,4 +1,5 @@
-import { Checkbox } from "./Checkbox"
+import { Checkbox } from './Checkbox'
+import { Input } from './Input'
 
 interface ITagListProps {
   selectedTags: Set<string>
@@ -18,17 +19,18 @@ export function TagList({
   setNewTagInput,
 }: ITagListProps) {
   return (
-    <div id="tagList" className="rounded-lg bg-white p-4">
-      <label className="mb-1 block text-sm font-medium">Tags</label>
-      <input
+    <div id="tagList" className="flex-1/3 rounded-lg bg-white p-4">
+      <Input
+        label="Tags"
         placeholder="New tag"
         value={newTagInput}
         onChange={(e) => setNewTagInput(e.target.value)}
         onKeyDown={handleNewTagKeyDown}
-        className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-teal-200 focus:outline-none"
+        type="text"
+        inputName="tags"
       />
 
-      <div className="mt-4 max-h-[320px] w-full max-w-80 overflow-x-hidden overflow-y-auto rounded-lg border border-[#E6E6E6] p-4">
+      <div className="border-neutral-st3-default mt-4 h-[320px] w-full overflow-x-hidden overflow-y-auto rounded-lg border p-4 md:h-96">
         {allTags.map((tag) => (
           <Checkbox
             key={tag}

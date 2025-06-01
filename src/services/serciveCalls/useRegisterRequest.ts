@@ -27,5 +27,5 @@ export function useRegisterRequest() {
       }
     },
   })
-  return { sendRegisterRequest }
+  return { sendRegisterRequest, isLoading: sendRegisterRequest.isPending }
 }
