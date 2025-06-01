@@ -1,20 +1,17 @@
 import { Link, useLocation } from 'react-router'
 
+const menuItems = [
+  { name: 'All Articles', path: '/articles' },
+  { name: 'New Article', path: '/articles/create' },
+]
 export function Sidebar({ menuOpen }: { menuOpen: boolean }) {
   const { pathname } = useLocation()
-
-  const menuItems = [
-    { name: 'All Articles', path: '/articles' },
-    { name: 'New Article', path: '/articles/create' },
-  ]
 
   return (
     <aside
       className={`${
-        menuOpen
-          ? 'absolute top-14 bottom-0 left-0 z-10 block md:top-16'
-          : 'hidden'
-      } w-60 space-y-2 bg-white p-4 md:block`}
+        menuOpen ? 'block' : 'hidden'
+      } bg-neutral-bg1-default fixed top-14 bottom-0 left-0 z-10 w-60 space-y-2 p-4 md:top-16 md:block`}
     >
       {menuItems.map((item) => (
         <Link

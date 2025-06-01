@@ -16,9 +16,9 @@ export default function MainLayout({
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-      <div className="flex flex-1">
+      <div className="flex">
         <Sidebar menuOpen={menuOpen} />
-        <main className="flex-1 p-4">{children}</main>
+        <main className="ml-60 flex-1 p-6">{children}</main>
       </div>
     </div>
   )

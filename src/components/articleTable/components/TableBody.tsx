@@ -22,7 +22,10 @@ export function TableBody({
   return (
     <tbody>
       {articleList.map((post, index) => (
-        <tr key={post.slug} className="relative hover:bg-gray-50">
+        <tr
+          key={post.slug}
+          className="border-neutral-st3-default relative h-12 border-b hover:bg-gray-50"
+        >
           <td className="p-2">{index + 1}</td>
           <td className="p-2 font-semibold">{post.title}</td>
           <td className="p-2">{post.author.username}</td>

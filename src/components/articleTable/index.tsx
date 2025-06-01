@@ -23,18 +23,23 @@ export function ArticleTable({ articles }: IArticleProps) {
   } = useTableFunctions({ articles: articles })
 
   return (
-    <div className="mx-auto h-[560px] w-80 overflow-x-auto rounded-xl bg-white pb-4 shadow-sm md:max-h-[788px] md:w-full md:p-4 lg:w-full">
-      <h2 className="mb-4 ml-4 text-lg font-semibold">All Posts</h2>
-      <table className="w-full table-auto border-collapse p-4 text-sm">
-        <TableHead />
-        <TableBody
-          articleList={currentPosts}
-          openMenuSlug={openMenuSlug}
-          setOpenMenuSlug={setOpenMenuSlug}
-          setDeleteSlug={setDeleteSlug}
-          setShowModal={setShowModal}
-        />
-      </table>
+    <div className="bg-neutral-bg1-default mx-auto h-[560px] w-80 overflow-x-auto rounded-lg shadow-sm md:h-fit md:w-full">
+      <h2 className="border-neutral-st3-default flex h-[100px] min-h-24 items-center border-b p-6 text-lg font-semibold">
+        All Posts
+      </h2>
+      <div className="w-full p-6">
+        <table className="table-auto border-collapse text-sm">
+          <TableHead />
+          <TableBody
+            articleList={currentPosts}
+            openMenuSlug={openMenuSlug}
+            setOpenMenuSlug={setOpenMenuSlug}
+            setDeleteSlug={setDeleteSlug}
+            setShowModal={setShowModal}
+          />
+        </table>
+      </div>
+
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
