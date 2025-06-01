@@ -10,7 +10,7 @@ export function Home() {
     queryKey: ['articles'],
     queryFn: () => getAllArticles({}),
   })
-  console.log('articles data:', response)
+  
   return (
     <MainLayout userName={username}>
       {isPending && (

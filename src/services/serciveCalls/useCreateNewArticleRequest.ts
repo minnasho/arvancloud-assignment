@@ -3,6 +3,7 @@ import { createNewArticle } from '../api'
 import type { INewArticleData } from '../types'
 import { useNavigate } from 'react-router'
 import { showToast } from '../../utils/showToast'
+import { queryClient } from '../../app/queryClient'
 
 export function useCreateNewArticleRequest() {
   const navigate = useNavigate()
@@ -10,6 +11,7 @@ export function useCreateNewArticleRequest() {
     mutationFn: (payload: INewArticleData) => createNewArticle({ ...payload }),
     onSuccess: () => {
       void navigate('/articles', { replace: true })
+      queryClient.invalidateQueries({ queryKey: ['articles'] })
       showToast({
         title: 'Well done!',
         message: 'Article created successfuly',
