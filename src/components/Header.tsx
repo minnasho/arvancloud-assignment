@@ -1,13 +1,13 @@
 import { useLogout } from '../hooks'
 import { Button } from './Button'
 
-interface INavbarProps {
+interface IHeaderProps {
   userName: string
   menuOpen: boolean
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function Navbar({ userName, menuOpen, setMenuOpen }: INavbarProps) {
+export function Header({ userName, menuOpen, setMenuOpen }: IHeaderProps) {
   const logout = useLogout()
 
   return (

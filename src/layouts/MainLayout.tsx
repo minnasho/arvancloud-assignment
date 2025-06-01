@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navbar, SideMenu } from '../components'
+import { Header, Sidebar } from '../components'
 
 export default function MainLayout({
   userName,
@@ -11,13 +11,13 @@ export default function MainLayout({
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <div className="bg-neutral-bg2-default flex h-screen w-full flex-col pt-16">
-      <Navbar
+      <Header
         userName={userName}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
       <div className="flex flex-1">
-        <SideMenu menuOpen={menuOpen} />
+        <Sidebar menuOpen={menuOpen} />
         <main className="flex-1 p-4">{children}</main>
       </div>
     </div>

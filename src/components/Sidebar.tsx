@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router'
 
-export function SideMenu({ menuOpen }: { menuOpen: boolean }) {
+export function Sidebar({ menuOpen }: { menuOpen: boolean }) {
   const { pathname } = useLocation()
 
   const menuItems = [
