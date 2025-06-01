@@ -25,7 +25,7 @@ export function Checkbox({
         className="peer hidden"
       />
       <div
-        className={`flex h-5 w-5 items-center justify-center rounded border-2 transition ${checked ? 'border-teal-500 bg-teal-500' : 'border-gray-400 bg-white'} peer-disabled:opacity-50`}
+        className={`flex h-5 w-5 items-center justify-center rounded border-2 transition ${checked ? 'border-primary-bg2-default bg-primary-bg2-default' : 'border-neutral-st1-default bg-neutral-bg1-default'} peer-disabled:opacity-50`}
       >
         {checked && (
           <svg

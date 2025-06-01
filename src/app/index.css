@@ -1,1 +1,73 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+:root {
+  --primary-bg1-default: #e0f7f7;
+  --primary-fg1-default: #009595;
+  --primary-fg1-hover: #007070;
+  --primary-bg2-default: #009595;
+  --primary-bg2-hover: #007070;
+  --primary-bg2-press: #004a4a;
+  --primary-bg2-disable: #99e3e3;
+
+  --success-bg1-default: #e3f6e9;
+  --success-fg1-default: #17b24a;
+
+  --error-bg1-default: #fae4e4;
+  --error-fg1-default: #d61e20;
+  --error-bg2-default: #d61e20;
+  --error-bg2-hover: #ab181a;
+  --error-bg2-press: #801213;
+  --error-bg2-disable: #efa5a6;
+
+  --neutral-bg1-default: #ffffff;
+  --neutral-bg1-hover: #f0f0f0;
+  --neutral-bg2-default: #f0f0f0;
+  --neutral-fg1-hover: #191919;
+  --neutral-fg1-default: #333333;
+  --neutral-fg3-default: #ffffff;
+  --neutral-st1-default: #7f7f7f;
+  --neutral-st2-default: #cccccc;
+  --neutral-st3-default: #e6e6e6;
+
+  --pt-info-t2-fg1-default: #0172b4;
+}
+@theme inline {
+  --color-primary-bg1: var(--primary-bg1-default);
+  --color-primary-fg1-default: var(--primary-fg1-default);
+  --color-primary-fg1-hover: var(--primary-fg1-hover);
+  --color-primary-bg2-default: var(--primary-bg2-default);
+  --color-primary-bg2-hover: var(--primary-bg2-hover);
+  --color-primary-bg2-press: var(--primary-bg2-press);
+  --color-primary-bg2-disable: var(--primary-bg2-disable);
+
+  --color-success-bg1-default: var(--success-bg1-default);
+  --color-success-fg1-default: var(--success-fg1-default);
+
+  --color-error-bg1-default: var(--error-bg1-default);
+  --color-error-fg1-default: var(--error-fg1-default);
+  --color-error-bg2-default: var(--error-bg2-default);
+  --color-error-bg2-hover: var(--error-bg2-hover);
+  --color-error-bg2-press: var(--error-bg2-press);
+  --color-error-bg2-disable: var(--error-bg2-disable);
+
+  --color-neutral-bg1-default: var(--neutral-bg1-default);
+  --color-neutral-bg1-hover: var(--neutral-bg1-hover);
+  --color-neutral-bg2-default: var(--neutral-bg2-default);
+  --color-neutral-fg1-default: var(--neutral-fg1-default);
+  --color-neutral-fg1-hover: var(--neutral-fg1-hover);
+  --color-neutral-fg3-default: var(--neutral-fg3-default);
+  --color-neutral-st1-default: var(--neutral-st1-default);
+  --color-neutral-st2-default: var(--neutral-st2-default);
+  --color-neutral-st3-default: var(--neutral-st3-default);
+
+  --color-pt-info-t2-fg1-default: var(--pt-info-t2-fg1-default);
+}
+
+@layer base {
+  html,
+  body {
+    font-size: 14px;
+    background-color: var(--neutral-bg2-default);
+    color: var(--neutral-fg1-default);
+  }
+}

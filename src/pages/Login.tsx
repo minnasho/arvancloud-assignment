@@ -5,7 +5,7 @@ import { useFormLogic } from '../hooks'
 import { loginSchema, type LoginFormData } from '../utils/formSchemas'
 
 export function Login() {
-  const { sendLoginRequest } = useLoginRequest()
+  const { sendLoginRequest, isLoading } = useLoginRequest()
   const { handleSubmit, onSubmit, register, errors } =
     useFormLogic<LoginFormData>({
       schema: loginSchema,
@@ -18,25 +18,22 @@ export function Login() {
       alterWayText={'Sign up now'}
       alterWayLink={'/register'}
       onFormSubmit={handleSubmit(onSubmit)}
+      isLoading={isLoading}
     >
-      <div className="mb-4">
-        <Input
-          register={register}
-          errors={errors}
-          label="Email"
-          type="email"
-          inputName="email"
-        />
-      </div>
-      <div className="mb-6">
-        <Input
-          register={register}
-          errors={errors}
-          label="Password"
-          type="password"
-          inputName="password"
-        />
-      </div>
+      <Input
+        register={register}
+        errors={errors}
+        label="Email"
+        type="email"
+        inputName="email"
+      />
+      <Input
+        register={register}
+        errors={errors}
+        label="Password"
+        type="password"
+        inputName="password"
+      />
     </AuthLayout>
   )
 }

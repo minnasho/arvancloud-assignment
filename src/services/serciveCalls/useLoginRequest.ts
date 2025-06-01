@@ -31,14 +31,7 @@ export function useLoginRequest() {
           type: 'error',
         })
       }
-      // error.map((errMsg) =>
-      //   showToast({
-      //     title: 'Sign-in Failed!',
-      //     message: errMsg,
-      //     type: 'error',
-      //   }),
-      // )
     },
   })
-  return { sendLoginRequest }
+  return { sendLoginRequest, isLoading: sendLoginRequest.isPending }
 }

@@ -5,7 +5,7 @@ import { AuthLayout } from '../layouts/AuthLayout'
 import { registerSchema, type RegisterFormData } from '../utils/formSchemas'
 
 export function Register() {
-  const { sendRegisterRequest } = useRegisterRequest()
+  const { sendRegisterRequest, isLoading } = useRegisterRequest()
   const { handleSubmit, onSubmit, register, errors } =
     useFormLogic<RegisterFormData>({
       schema: registerSchema,
@@ -18,34 +18,29 @@ export function Register() {
       alterWayText={'Sign in'}
       alterWayLink={'/login'}
       onFormSubmit={handleSubmit(onSubmit)}
+      isLoading={isLoading}
     >
-      <div className="mb-4">
-        <Input
-          register={register}
-          errors={errors}
-          label="Username"
-          type="text"
-          inputName="username"
-        />
-      </div>
-      <div className="mb-4">
-        <Input
-          register={register}
-          errors={errors}
-          label="Email"
-          type="email"
-          inputName="email"
-        />
-      </div>
-      <div className="mb-6">
-        <Input
-          register={register}
-          errors={errors}
-          label="Password"
-          type="password"
-          inputName="password"
-        />
-      </div>
+      <Input
+        register={register}
+        errors={errors}
+        label="Username"
+        type="text"
+        inputName="username"
+      />
+      <Input
+        register={register}
+        errors={errors}
+        label="Email"
+        type="email"
+        inputName="email"
+      />
+      <Input
+        register={register}
+        errors={errors}
+        label="Password"
+        type="password"
+        inputName="password"
+      />
     </AuthLayout>
   )
 }
