@@ -1,6 +1,6 @@
 import type { IArticle } from '../../services/types'
 import { Warning } from '../icons'
-import { Modal } from '../Modal'
+import { Modal } from '../modal'
 import { TableHead, TableBody, Pagination } from './components'
 import useTableFunctions from './useTableFunctions'
 
@@ -60,7 +60,7 @@ export function ArticleTable({ articles, articlesCount }: IArticleProps) {
         <div className="bg-error-bg1-default flex h-14 w-14 items-center justify-center rounded-full">
           <Warning color="#D61E20" />
         </div>
-          <p>Are you sure you want to delete this article?</p>
+        <p>Are you sure you want to delete this article?</p>
       </Modal>
     </div>
   )
