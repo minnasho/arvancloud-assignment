@@ -24,24 +24,34 @@ export function TableBody({
       {articleList.map((post, index) => (
         <tr
           key={post.slug}
-          className="border-neutral-st3-default relative h-12 border-b hover:bg-gray-50"
+          className="border-neutral-st3-default hover:bg-primary-bg1 hover:text-primary-fg1-default relative h-12 border-b"
         >
-          <td className="p-2">{index + 1}</td>
-          <td className="p-2 font-semibold">{post.title}</td>
-          <td className="p-2">{post.author.username}</td>
-          <td className="p-2">{post.tagList.join(', ')}</td>
-          <td className="p-2">{`${post.description.slice(0, 20)}...`}</td>
-          <td className="p-2">
-            {new Date(post.createdAt).toLocaleString('en-US')}
+          <td className="w-16 px-3 py-2 text-left">
+            <div className="bg-neutral-bg2-default flex h-8 w-8 items-center justify-center rounded-sm">
+              {index + 1}
+            </div>
           </td>
-          <td className="relative p-2 text-right">
+          <td className="max-w-32 overflow-hidden px-3 py-2 text-left font-semibold text-nowrap text-ellipsis">
+            {post.title}
+          </td>
+          <td className="w-48 max-w-48 px-3 py-2 text-left">
+            {post.author.username}
+          </td>
+          <td className="max-w-28 overflow-hidden px-3 py-2 text-left text-nowrap text-ellipsis">
+            {post.tagList.join(', ')}
+          </td>
+          <td className="max-w-[448px] px-3 py-2 text-left md:w-[448px]">{`${post.description.slice(0, 20)}...`}</td>
+          <td className="max-w-32 px-3 py-2 text-left md:w-32">
+            {new Date(post.createdAt).toLocaleDateString('en-US')}
+          </td>
+          <td className="relative w-16 px-3 py-2 text-left">
             <button
               onClick={() =>
                 setOpenMenuSlug((prev) =>
                   prev === post.slug ? null : post.slug,
                 )
               }
-              className="rounded px-2 py-1 text-sm hover:bg-gray-200"
+              className="border-neutral-st2-default hover:border-primary-fg1-default h-10 w-10 cursor-pointer rounded-xl border font-bold"
             >
               ⋯
             </button>

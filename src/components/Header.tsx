@@ -11,7 +11,7 @@ export function Header({ userName, menuOpen, setMenuOpen }: IHeaderProps) {
   const logout = useLogout()
 
   return (
-    <header className="border-neutral-st3-default bg-neutral-bg1-default fixed top-0 right-0 left-0 flex h-16 items-center justify-between border-b px-4 py-3">
+    <header className="border-neutral-st3-default bg-neutral-bg1-default fixed top-0 right-0 left-0 z-20 flex h-16 items-center justify-between border-b px-4 py-3">
       <span className="hidden md:inline">
         Welcome <strong>&lt;{userName}&gt;</strong>
       </span>

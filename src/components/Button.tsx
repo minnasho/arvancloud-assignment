@@ -12,12 +12,12 @@ export function Button({
   role = 'button',
   title,
   btnType,
-  className,
+  className = 'w-full',
   isLoading = false,
   onClick,
 }: IButtonProps) {
   const baseClasses =
-    'w-full h-10 rounded-xl min-w-[72px] px-4 weight-semibold transition cursor-pointer text-center flex items-center justify-center'
+    'h-10 rounded-xl min-w-[72px] px-4 weight-semibold transition cursor-pointer text-center flex items-center justify-center'
   const typeClasses = {
     primary:
       'text-neutral-fg3-default bg-primary-bg2-default hover:bg-primary-bg2-hover',

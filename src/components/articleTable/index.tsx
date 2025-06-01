@@ -1,13 +1,15 @@
 import type { IArticle } from '../../services/types'
+import { Warning } from '../icons'
 import { Modal } from '../Modal'
 import { TableHead, TableBody, Pagination } from './components'
 import useTableFunctions from './useTableFunctions'
 
-interface IArticleProps {
+export interface IArticleProps {
   articles: IArticle[]
+  articlesCount: number
 }
 
-export function ArticleTable({ articles }: IArticleProps) {
+export function ArticleTable({ articles, articlesCount }: IArticleProps) {
   const {
     openMenuSlug,
     showModal,
@@ -20,7 +22,7 @@ export function ArticleTable({ articles }: IArticleProps) {
     setOpenMenuSlug,
     setShowModal,
     totalPages,
-  } = useTableFunctions({ articles: articles })
+  } = useTableFunctions({ articles: articles, articlesCount: articlesCount })
 
   return (
     <div className="bg-neutral-bg1-default mx-auto h-[560px] w-80 overflow-x-auto rounded-lg shadow-sm md:h-fit md:w-full">
@@ -28,7 +30,7 @@ export function ArticleTable({ articles }: IArticleProps) {
         All Posts
       </h2>
       <div className="w-full p-6">
-        <table className="table-auto border-collapse text-sm">
+        <table className="w-full table-auto border-collapse">
           <TableHead />
           <TableBody
             articleList={currentPosts}
@@ -39,12 +41,14 @@ export function ArticleTable({ articles }: IArticleProps) {
           />
         </table>
       </div>
+      <div className="flex items-center justify-end p-6">
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          changePage={changePage}
+        />
+      </div>
 
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        changePage={changePage}
-      />
       <Modal
         isOpen={showModal}
         onConfirm={() => handleDelete(deleteSlug)}
@@ -52,7 +56,12 @@ export function ArticleTable({ articles }: IArticleProps) {
           setShowModal(false)
           setOpenMenuSlug(null)
         }}
-      />
+      >
+        <div className="bg-error-bg1-default flex h-14 w-14 items-center justify-center rounded-full">
+          <Warning color="#D61E20" />
+        </div>
+          <p>Are you sure you want to delete this article?</p>
+      </Modal>
     </div>
   )
 }

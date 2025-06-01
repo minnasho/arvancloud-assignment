@@ -18,7 +18,7 @@ export default function MainLayout({
       />
       <div className="flex">
         <Sidebar menuOpen={menuOpen} />
-        <main className="ml-60 flex-1 p-6">{children}</main>
+        <main className="flex-1 p-6 md:ml-60">{children}</main>
       </div>
     </div>
   )
