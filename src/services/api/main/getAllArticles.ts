@@ -6,9 +6,14 @@ interface GetAllArticlesParams {
   offset?: number
 }
 export function getAllArticles({ limit, offset }: GetAllArticlesParams) {
+  if (limit && offset) {
+    const params = new URLSearchParams()
+    params.append('offset', offset.toString())
+    params.append('limit', limit.toString())
 
     return request.get<IGetAllArticlesResponse>(
-      `/articles?page=${JSON.stringify(offset)}&limit=${JSON.stringify(limit)}`,
+      `/articles?${params.toString()}`,
     )
-
+  }
+  return request.get<IGetAllArticlesResponse>('/articles')
 }
