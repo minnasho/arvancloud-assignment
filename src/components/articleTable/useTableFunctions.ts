@@ -3,6 +3,7 @@ import { useInfiniteQuery, useMutation } from '@tanstack/react-query'
 import { deleteArticle, getAllArticles } from '../../services/api'
 import { showToast } from '../../utils/showToast'
 import type { IArticleProps } from '.'
+import { queryClient } from '../../app/queryClient'
 
 const ITEMS_PER_PAGE = 10
 export default function useTableFunctions({
@@ -37,6 +38,7 @@ export default function useTableFunctions({
   const deleteArticleRequest = useMutation({
     mutationFn: ({ slug }: { slug: string }) => deleteArticle({ slug }),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['articles'] })
       showToast({
         title: '',
         message: 'Article deleted successfuly',
